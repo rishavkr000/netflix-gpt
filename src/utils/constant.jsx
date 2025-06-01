@@ -6,3 +6,12 @@ export const NETFLIX_LOGO =
 
 export const USER_ICON =
   "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png";
+
+export const SEARCH_ICON =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdz-IV8A7_gvH3FnGN9AZP9cu50QSiYFgU-A&s";
+
+export const NOTIFICATION_ICON =
+  "https://cdn-icons-png.flaticon.com/512/3119/3119338.png";
+
+export const DROPDOWN_ICON =
+  "https://icons.veryicon.com/png/o/miscellaneous/simple-and-round-line-mark/down-arrow-56.png";

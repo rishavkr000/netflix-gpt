@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { NETFLIX_LOGO, USER_ICON } from "../utils/constant";
+import { DROPDOWN_ICON, NETFLIX_LOGO, NOTIFICATION_ICON, SEARCH_ICON, USER_ICON } from "../utils/constant";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
@@ -70,12 +70,12 @@ const Header = () => {
       {user && (
         <div className="flex" ref={menuRef}>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdz-IV8A7_gvH3FnGN9AZP9cu50QSiYFgU-A&s"
+            src={SEARCH_ICON}
             alt="Search"
             className="w-5 h-5 mt-8 mr-4 cursor-pointer"
           />
           <img
-            src="https://cdn-icons-png.flaticon.com/512/3119/3119338.png"
+            src={NOTIFICATION_ICON}
             alt="Notification"
             className="w-5 h-5 mt-8 mr-4 cursor-pointer"
           />
@@ -86,7 +86,7 @@ const Header = () => {
             onClick={handleMenu}
           />
           <img
-            src="https://icons.veryicon.com/png/o/miscellaneous/simple-and-round-line-mark/down-arrow-56.png"
+            src={DROPDOWN_ICON}
             alt="dropdown"
             className="mt-9 mr-6 cursor-pointer w-2 h-2 bg-white"
             onClick={handleMenu}
