@@ -3,10 +3,13 @@ import { BACKGROUND_IMAGE } from "../utils/constant";
 import { Link } from "react-router";
 import { useRef, useState } from "react";
 import { checkValidData } from "../utils/validate";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [error, setError] = useState("");
 
   const email = useRef(null);
   const password = useRef(null);
@@ -14,12 +17,40 @@ const Login = () => {
 
   const handleSubmit = () => {
     // Validate the form data
-
-    const message = checkValidData(
-      email.current.value,
-      password.current.value,
-    );
+    const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
+    if (message) return;
+
+    if (!isLoginForm) {
+      // Signed up
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError(errorMessage);
+        });
+    } else {
+      // Signed in
+      signInWithEmailAndPassword(auth, email.current.value,
+        password.current.value)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError(errorMessage)
+        });
+    }
   };
 
   return (
@@ -73,9 +104,7 @@ const Login = () => {
         >
           {isLoginForm ? "Sign In" : "Sign Up"}
         </button>
-        {errorMessage === "All fields are mandatory" && (
-          <p className="text-red-400">{errorMessage}</p>
-        )}
+        <p className="text-red-400">{error}</p>
         <p className="text-center">OR</p>
         {isLoginForm ? (
           <div className="text-center">
