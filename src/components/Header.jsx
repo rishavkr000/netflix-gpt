@@ -1,42 +1,109 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NETFLIX_LOGO, USER_ICON } from "../utils/constant";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUser } from "../redux/slice/userSlice";
+import { addUser, removeUser } from "../redux/slice/userSlice";
 
 const Header = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user );
+  const user = useSelector((store) => store.user);
+  const menuRef = useRef(null);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
-        navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  const handleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="absolute z-10 w-screen bg-gradient-to-b from-black flex justify-between">
       <img className="w-48" src={NETFLIX_LOGO} alt="logo" />
-      { user && <div className="flex">
-        <img
-          src={user.photoURL ? user.photoURL : USER_ICON}
-          alt="usericon"
-          className="w-8 h-8 rounded-4xl mt-6 mr-6"
-        />
-        <button
-          className="mr-6 font-bold text-white cursor-pointer"
-          onClick={handleSignOut}
-        >
-          Sign Out
-        </button>
-      </div>}
+      {user && (
+        <div className="flex" ref={menuRef}>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdz-IV8A7_gvH3FnGN9AZP9cu50QSiYFgU-A&s"
+            alt="Search"
+            className="w-5 h-5 mt-8 mr-4 cursor-pointer"
+          />
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3119/3119338.png"
+            alt="Notification"
+            className="w-5 h-5 mt-8 mr-4 cursor-pointer"
+          />
+          <img
+            src={user.photoURL ? user.photoURL : USER_ICON}
+            alt="usericon"
+            className="w-8 h-8 mt-6 mr-1 cursor-pointer"
+            onClick={handleMenu}
+          />
+          <img
+            src="https://icons.veryicon.com/png/o/miscellaneous/simple-and-round-line-mark/down-arrow-56.png"
+            alt="dropdown"
+            className="mt-9 mr-6 cursor-pointer w-2 h-2 bg-white"
+            onClick={handleMenu}
+          />
+          {menuOpen && (
+            <div className="absolute right-0 mt-16 w-40 mr-8 bg-white text-black rounded-md shadow-lg">
+              <ul className="py-2">
+                <li>
+                  <button
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

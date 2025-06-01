@@ -1,6 +1,6 @@
 import Header from "./Header";
 import { BACKGROUND_IMAGE } from "../utils/constant";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useRef, useState } from "react";
 import { checkValidData } from "../utils/validate";
 import {
@@ -21,7 +21,6 @@ const Login = () => {
   const password = useRef(null);
   const name = useRef(null);
 
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
@@ -54,7 +53,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setError(error);
@@ -74,7 +72,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
