@@ -16,4 +16,16 @@ export const NOTIFICATION_ICON =
 export const DROPDOWN_ICON =
   "https://icons.veryicon.com/png/o/miscellaneous/simple-and-round-line-mark/down-arrow-56.png";
 
-export const USER_PROFILE_PHOTO = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumeSpXjKUAxRdHv5mbaG_ixBJTCTRRm4SDw&s"
+export const USER_PROFILE_PHOTO =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumeSpXjKUAxRdHv5mbaG_ixBJTCTRRm4SDw&s";
+
+export const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmE5Y2I1OGI3OWU1NjU0MzBmN2EzOGIxOTQ0MWRkNiIsIm5iZiI6MTc0ODc5NTQzMi41OTYsInN1YiI6IjY4M2M4MDI4NWM3ODE5M2VjYWQyMTRkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.M40h-xn2-KMSd6UpOhHHdvsi4FeLXLx5pjQdj1reKF0",
+  },
+};
+
+export const URL = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
