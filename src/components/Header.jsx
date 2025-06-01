@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { DROPDOWN_ICON, NETFLIX_LOGO, NOTIFICATION_ICON, SEARCH_ICON, USER_ICON } from "../utils/constant";
+import { DROPDOWN_ICON, NETFLIX_LOGO, NOTIFICATION_ICON, SEARCH_ICON, USER_AVATAR } from "../utils/constant";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
@@ -80,7 +80,7 @@ const Header = () => {
             className="w-5 h-5 mt-8 mr-4 cursor-pointer"
           />
           <img
-            src={user.photoURL ? user.photoURL : USER_ICON}
+            src={user.photoURL ? user.photoURL : USER_AVATAR}
             alt="usericon"
             className="w-8 h-8 mt-6 mr-1 cursor-pointer"
             onClick={handleMenu}

@@ -1,5 +1,5 @@
 import Header from "./Header";
-import { BACKGROUND_IMAGE } from "../utils/constant";
+import { BACKGROUND_IMAGE, USER_AVATAR } from "../utils/constant";
 import { Link } from "react-router";
 import { useRef, useState } from "react";
 import { checkValidData } from "../utils/validate";
@@ -38,10 +38,9 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          updateProfile(auth.currentUser, {
+          updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRumeSpXjKUAxRdHv5mbaG_ixBJTCTRRm4SDw&s",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
