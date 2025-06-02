@@ -28,6 +28,22 @@ export const API_OPTIONS = {
   },
 };
 
-export const URL = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+export const URL =
+  "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
 
-export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w200"
+export const MOVIE_POSTER_URL = "https://image.tmdb.org/t/p/w200";
+
+export const SUPPORTED_LANGUAGES = [
+  { identifier: "en", name: "English" },
+  { identifier: "hindi", name: "Hindi" },
+  { identifier: "chinese", name: "Chinese" },
+  { identifier: "spanish", name: "Spanish" },
+  { identifier: "arabic", name: "Arabic" },
+  { identifier: "assam", name: "Assam" },
+  { identifier: "bengal", name: "Bengal" },
+  { identifier: "bhojpuri", name: "Bhojpuri" },
+  { identifier: "dogri", name: "Dogri" },
+  { identifier: "gujarati", name: "Gujarati" },
+  { identifier: "kannada", name: "Kannada" },
+  { identifier: "tamil", name: "Tamil" },
+];
