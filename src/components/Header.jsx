@@ -5,6 +5,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../redux/slice/userSlice";
+import { isToggleGptSearchPage } from "../redux/slice/gptSlice";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -64,21 +65,18 @@ const Header = () => {
     };
   }, []);
 
+  const handleGptToggleButton = () => {
+    dispatch(isToggleGptSearchPage())
+  }
+
   return (
     <div className="absolute z-10 w-screen bg-gradient-to-b from-black flex justify-between">
       <img className="w-48" src={NETFLIX_LOGO} alt="logo" />
       {user && (
         <div className="flex" ref={menuRef}>
-          {/* <img
-            src={SEARCH_ICON}
-            alt="Search"
-            className="w-5 h-5 mt-8 mr-4 cursor-pointer"
-          />
-          <img
-            src={NOTIFICATION_ICON}
-            alt="Notification"
-            className="w-5 h-5 mt-8 mr-4 cursor-pointer"
-          /> */}
+        <button 
+          onClick={handleGptToggleButton}
+          className="bg-red-800 my-6 mx-2 px-4 cursor-pointer hover:opacity-80 text-white">GPT Search</button>
           <img
             src={user.photoURL ? user.photoURL : USER_AVATAR}
             alt="usericon"
