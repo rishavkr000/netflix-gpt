@@ -138,23 +138,27 @@ const Login = () => {
             <Link to="#" className="flex justify-center underline mb-3">
               Forgot password?
             </Link>
-            <div
-              className="mt-3"
-              onClick={() => setIsLoginForm((value) => !value)}
-            >
+            <div className="mt-3">
               New to Netflix GPT?
-              <p className="cursor-pointer mt-2">Sign Up Now</p>
+              <p
+                className="cursor-pointer mt-2"
+                onClick={() => setIsLoginForm((value) => !value)}
+              >
+                Sign Up Now
+              </p>
             </div>
           </div>
         ) : (
           <div className="text-center">
-            <span
-              className="mt-3"
-              onClick={() => setIsLoginForm((value) => !value)}
-            >
+            <span className="mt-3">
               Already have an Account?
               <br />
-              <p className="cursor-pointer mt-2">Sign In</p>
+              <p
+                className="cursor-pointer mt-2"
+                onClick={() => setIsLoginForm((value) => !value)}
+              >
+                Sign In
+              </p>
             </span>
           </div>
         )}

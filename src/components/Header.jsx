@@ -69,7 +69,7 @@ const Header = () => {
       <img className="w-48" src={NETFLIX_LOGO} alt="logo" />
       {user && (
         <div className="flex" ref={menuRef}>
-          <img
+          {/* <img
             src={SEARCH_ICON}
             alt="Search"
             className="w-5 h-5 mt-8 mr-4 cursor-pointer"
@@ -78,7 +78,7 @@ const Header = () => {
             src={NOTIFICATION_ICON}
             alt="Notification"
             className="w-5 h-5 mt-8 mr-4 cursor-pointer"
-          />
+          /> */}
           <img
             src={user.photoURL ? user.photoURL : USER_AVATAR}
             alt="usericon"
