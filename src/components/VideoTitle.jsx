@@ -1,6 +1,6 @@
 const VideoTitle = ({ title, description }) => {
   return (
-    <div className="w-screen aspect-video pt-[10%] px-6 md:px-16 md:px-24 absolute text-white opacity-90">
+    <div className="w-screen aspect-video pt-[10%] px-6 md:px-16 absolute text-white opacity-90">
       <h1 className="text-xl md:text-3xl font-bold">{title}</h1>
       <p className="text-lg w-1/4 py-6 hidden md:inline-block">{description}</p>
       <div className="mt-4 md:mt-0">

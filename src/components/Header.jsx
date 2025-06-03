@@ -84,7 +84,7 @@ const Header = () => {
     <div className="absolute z-10 w-screen bg-gradient-to-b from-black flex flex-col md:flex-row justify-between">
       <img className="w-48 m-auto md:m-0" src={NETFLIX_LOGO} alt="logo" />
       {user && (
-        <div className="flex -mt-6 md:mt-0 flex justify-between mx-4 md:mx-0" ref={menuRef}>
+        <div className="-mt-6 md:mt-0 flex justify-between mx-4 md:mx-0" ref={menuRef}>
           {isGptPageOpen && (
             <select
               className="bg-white my-6 mx-2 px-6 py-2"
