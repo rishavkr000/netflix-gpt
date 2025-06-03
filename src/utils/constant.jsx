@@ -24,7 +24,7 @@ export const API_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmE5Y2I1OGI3OWU1NjU0MzBmN2EzOGIxOTQ0MWRkNiIsIm5iZiI6MTc0ODc5NTQzMi41OTYsInN1YiI6IjY4M2M4MDI4NWM3ODE5M2VjYWQyMTRkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.M40h-xn2-KMSd6UpOhHHdvsi4FeLXLx5pjQdj1reKF0",
+      "Bearer " + import.meta.env.VITE_TMDB_KEY,
   },
 };
 
@@ -47,7 +47,3 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "kannada", name: "Kannada" },
   { identifier: "tamil", name: "Tamil" },
 ];
-
-export const OPENAI_KEY = ""
-
-// export const HUGGINGFACE_AI_KEY = ""

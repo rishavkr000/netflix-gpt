@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { OPENAI_KEY } from "./constant";
 
 const client = new OpenAI({
-  apiKey: OPENAI_KEY,
+  apiKey: import.meta.env.VITE_OPENAI_KEY,
   dangerouslyAllowBrowser: true,
 });
 
