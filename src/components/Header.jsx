@@ -81,13 +81,13 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute z-10 w-screen bg-gradient-to-b from-black flex justify-between">
-      <img className="w-48" src={NETFLIX_LOGO} alt="logo" />
+    <div className="absolute z-10 w-screen bg-gradient-to-b from-black flex flex-col md:flex-row justify-between">
+      <img className="w-48 m-auto md:m-0" src={NETFLIX_LOGO} alt="logo" />
       {user && (
-        <div className="flex" ref={menuRef}>
+        <div className="flex -mt-6 md:mt-0 flex justify-between mx-4 md:mx-0" ref={menuRef}>
           {isGptPageOpen && (
             <select
-              className="bg-white my-6 mx-2 px-4"
+              className="bg-white my-6 mx-2 px-6 py-2"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((language) => (
@@ -99,25 +99,27 @@ const Header = () => {
           )}
           <button
             onClick={handleGptToggleButton}
-            className="bg-red-800 my-6 mx-2 px-4 cursor-pointer hover:opacity-80 text-white"
+            className="bg-red-800 my-6 mx-2 px-4 py-3 md:py-0 cursor-pointer hover:opacity-80 text-white"
           >
             {isGptPageOpen ? "Homepage" : "GPT Search"}
           </button>
           <img
             src={user.photoURL ? user.photoURL : USER_AVATAR}
             alt="usericon"
-            className="w-8 h-8 mt-6 mr-1 cursor-pointer"
             onClick={handleMenu}
+            className={`
+              w-8 h-8 mt-6 -mr-30 md:mr-1 cursor-pointer 
+              ${isGptPageOpen ? "hidden md:inline-block" : "inline-block"}`}
           />
           <img
             src={DROPDOWN_ICON}
             alt="dropdown"
-            className="mt-9 mr-6 cursor-pointer w-2 h-2 bg-white"
+            className={`mt-9 mr-6 cursor-pointer w-2 h-2 bg-white ${isGptPageOpen ? "hidden md:inline-block" : "inline-block"}`}
             onClick={handleMenu}
           />
           {menuOpen && (
-            <div className="absolute right-0 mt-16 w-40 mr-8 bg-white text-black rounded-md shadow-lg">
-              <ul className="py-2">
+            <div className="absolute right-0 mt-16 w-30 mr-8 bg-white text-black rounded-md shadow-lg">
+              <ul className="py-0">
                 <li>
                   <button
                     className="block w-full text-left px-4 py-2 hover:bg-gray-100"
