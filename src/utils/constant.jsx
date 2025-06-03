@@ -47,3 +47,7 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "kannada", name: "Kannada" },
   { identifier: "tamil", name: "Tamil" },
 ];
+
+export const OPENAI_KEY = ""
+
+// export const HUGGINGFACE_AI_KEY = ""
